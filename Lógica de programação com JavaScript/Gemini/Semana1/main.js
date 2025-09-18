@@ -1,0 +1,1 @@
+console.log('Gemini Semana 1');

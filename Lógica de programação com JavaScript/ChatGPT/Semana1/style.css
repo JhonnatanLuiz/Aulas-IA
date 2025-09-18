@@ -1,0 +1,90 @@
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: system-ui, Arial, sans-serif;
+  background: #f5f7fa;
+  color: #222;
+  line-height: 1.4;
+  padding: 2rem 1rem;
+}
+
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+h1 { margin-top: 0; font-size: 1.9rem; }
+
+.card {
+  background: #fff;
+  padding: 1.25rem 1.25rem 1rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px -4px rgba(0,0,0,.12);
+  border: 1px solid #e5e9ef;
+}
+.card h2 { margin-top: 0; font-size: 1.15rem; }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(160px,1fr));
+  gap: .75rem 1rem;
+  margin-bottom: .75rem;
+}
+label { font-size: .85rem; display: flex; flex-direction: column; gap: .3rem; }
+input {
+  padding: .55rem .6rem;
+  border-radius: 6px;
+  border: 1px solid #b9c3cf;
+  font-size: .95rem;
+  background: #fcfdff;
+}
+input:focus { outline: 2px solid #4d8af0; border-color: #4d8af0; }
+
+button {
+  cursor: pointer;
+  padding: .6rem 1rem;
+  border: 1px solid #2463d1;
+  background: #2d72f7;
+  color: #fff;
+  font-size: .9rem;
+  border-radius: 6px;
+  font-weight: 600;
+  letter-spacing: .3px;
+  transition: background .15s, transform .15s;
+}
+button:hover { background: #1d5bbf; }
+button:active { transform: translateY(1px); }
+button:disabled { background: #9db6dc; border-color: #8aa3c9; cursor: not-allowed; }
+.inline-btns { display: flex; gap: .6rem; flex-wrap: wrap; margin-bottom: .25rem; }
+
+.output-card { position: relative; }
+.saida {
+  min-height: 140px;
+  background: #0f172a;
+  color: #e2e8f0;
+  padding: .9rem 1rem;
+  border-radius: 8px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: .85rem;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  border: 1px solid #1e293b;
+  margin: 0 0 .75rem;
+}
+
+.badge {
+  display: inline-block;
+  padding: .15rem .5rem;
+  border-radius: 4px;
+  font-size: .65rem;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  background: #334155;
+  color: #cbd5e1;
+  margin-left: .4rem;
+}
+
+footer { text-align: center; margin-top: 2rem; font-size: .7rem; color: #64748b; }
