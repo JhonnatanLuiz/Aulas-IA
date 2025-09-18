@@ -89,7 +89,7 @@ AI Classes/
 │   │       ├── main.js         # JavaScript code
 │   │       └── style.css       # Styles
 │   └── Gemini/
-│       ├── index.html          # Navigation page
+│       ├
 │       └── Week1/              # Comparative exercises
 │           ├── index.html
 │           ├── main.js
