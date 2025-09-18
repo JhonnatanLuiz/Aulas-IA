@@ -21,7 +21,7 @@ Aulas IA/
 │   │       ├── main.js       # Código JavaScript
 │   │       └── style.css     # Estilos
 │   └── Gemini/
-│       ├── index.html        # Página de navegação
+│       ├
 │       └── Semana1/          # Exercícios comparativos
 │           ├── index.html
 │           ├── main.js
