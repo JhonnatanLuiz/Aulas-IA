@@ -115,6 +115,63 @@ function tabuada() {
     
 }
 
+// Escolher UM número aleatório entre 1 e 10 (versão simples)
+let numeroAleatorio = Math.floor(Math.random() * 10) + 1;
+console.log('Número aleatório:', numeroAleatorio);
+
+// Lista de nomes
+
+let nomes = [];
+for (let i = 0; i < 5; i++) {
+    let nome = prompt(`Digite o nome ${i + 1}:`);
+    nomes.push(nome);
+}
+
+console.log("Lista completa:", nomes);
+console.log("Primeiro nome:", nomes[0]);
+console.log("Último nome:", nomes[nomes.length - 1]);
+console.log("Quantidade de nomes digitados:", nomes.length);
+
+// Objeto simples carro
+
+const carro = {
+    marca: 'Toyota',
+    modelo: 'Corolla',
+    ano: 2020,
+    cor: 'Azul'
+};
+
+console.log(`Tenho um carro ${carro.marca} ${carro.modelo}, ano ${carro.ano}, de cor ${carro.cor}.`);
+
+// calculando o cubo de um número
+
+function cubes(a) {
+    return Math.pow(a, 3);
+}
+// ou return a * a * a;
+console.log(cubes(3));
+console.log(cubes(5));
+console.log(cubes(10));
+
+// Convertendo minutos em segundos
+
+function convert (minutes) {
+    return minutes * 60;
+}
+console.log(convert(5));
+console.log(convert(3));
+console.log(convert(2));
+
+//Área de um triângulo
+
+function triArea(base, height) {
+    return (base * height) / 2;
+}
+
+console.log(triArea(3, 2));
+console.log(triArea(7, 4));
+console.log(triArea(10, 10));
+
 // Fim do arquivo
 
 
