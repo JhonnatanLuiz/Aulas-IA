@@ -143,35 +143,58 @@ const carro = {
 
 console.log(`Tenho um carro ${carro.marca} ${carro.modelo}, ano ${carro.ano}, de cor ${carro.cor}.`);
 
-// calculando o cubo de um número
-
-function cubes(a) {
-    return Math.pow(a, 3);
-}
-// ou return a * a * a;
-console.log(cubes(3));
-console.log(cubes(5));
-console.log(cubes(10));
-
-// Convertendo minutos em segundos
-
-function convert (minutes) {
-    return minutes * 60;
-}
-console.log(convert(5));
-console.log(convert(3));
-console.log(convert(2));
-
-//Área de um triângulo
-
-function triArea(base, height) {
-    return (base * height) / 2;
+// Mini Projeto: Calculadora Simples (console)
+function somar(a, b) { return a + b; }
+function subtrair(a, b) { return a - b; }
+function multiplicar(a, b) { return a * b; }
+function dividir(a, b) {
+    if (b === 0) return NaN;
+    return a / b;
 }
 
-console.log(triArea(3, 2));
-console.log(triArea(7, 4));
-console.log(triArea(10, 10));
+function lerNumero(msg) {
+    const entrada = prompt(msg);
+    if (entrada === null) return null;
+    const n = Number(entrada.replace(',', '.'));
+    return Number.isFinite(n) ? n : NaN;
+}
 
-// Fim do arquivo
+function calculadora() {
+    while (true) {
+        const n1 = lerNumero('Digite o primeiro número (ou Cancelar para sair):');
+        if (n1 === null) break;
+        if (Number.isNaN(n1)) { alert('Número inválido.'); continue; }
+
+        const n2 = lerNumero('Digite o segundo número:');
+        if (n2 === null) break;
+        if (Number.isNaN(n2)) { alert('Número inválido.'); continue; }
+
+        const op = prompt('Operação (+ - * /):');
+        if (op === null) break;
+
+        let resultado;
+        switch (op) {
+            case '+': resultado = somar(n1, n2); break;
+            case '-': resultado = subtrair(n1, n2); break;
+            case '*': resultado = multiplicar(n1, n2); break;
+            case '/': resultado = dividir(n1, n2); break;
+            default:
+                alert('Operação inválida.');
+                continue;
+        }
+
+        alert(`${n1} ${op} ${n2} = ${resultado}`);
+        const cont = prompt('Continuar? (sim/não)');
+        if (!cont || cont.toLowerCase().startsWith('n')) break;
+    }
+    console.log('Calculadora encerrada.');
+}
+
+// Para iniciar automaticamente, descomente a linha abaixo:
+// calculadora();
+
+
+
+
 
 
