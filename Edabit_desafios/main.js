@@ -36,4 +36,14 @@ console.log(findPerimeter(6, 7));
 console.log(findPerimeter(20, 10));
 console.log(findPerimeter(2, 9));
 
+// Resto da divisão
+
+ function remainder(x,y) {
+    return x % y;
+ }
+    console.log(remainder(1, 3));
+    console.log(remainder(3, 4));
+    console.log(remainder(-9, 45));
+    console.log(remainder(5, 5));
+
 // Fim do arquivo
