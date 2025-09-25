@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>funções e arrays - semana 2</title>
+</head>
+<body>
+
+    <h1>Funções e Arrays - Semana 2</h1>
+    <p>Este é um exemplo de página HTML para a semana 2 do curso.</p>
+    
+    <div id="resultado"></div> <!-- Elemento para exibir os resultados -->
+
+    <script>
+        // Dia 1 - Funções básicas
+        // Exemplo de função que retorna uma saudação
+        function saudar(nome) {
+            return "Olá, " + nome + "!";
+        }
+        let mensagem = saudar("Jhonnatan");
+        document.write(mensagem);
+        console.log(mensagem);
+
+        // Exemplo de função que calcula o dobro de um número
+        function dobro(numero) {
+            return numero * 2;
+        }
+
+        // Função para atualizar o resultado do dobro
+        function atualizarDobro(numero) {
+            let resultado = dobro(numero);
+            document.getElementById("resultado").innerHTML += "<br>O dobro de " + numero + " é: " + resultado;
+        }
+
+        atualizarDobro(10); // Chama a função com o valor inicial
+
+        // Função para somar dois números
+        function soma(a, b) {
+            return a + b;
+        }
+
+        // Função para atualizar o resultado da soma
+        function atualizarSoma(a, b) {
+            let total = soma(a, b);
+            document.getElementById("resultado").innerHTML += "<br>A soma de " + a + " e " + b + " é: " + total;
+        }
+
+        atualizarSoma(5, 7); // Chama a função para somar 5 e 7
+    </script>
+</body>
+</html>
