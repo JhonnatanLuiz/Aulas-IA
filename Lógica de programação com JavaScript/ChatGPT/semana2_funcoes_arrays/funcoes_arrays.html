@@ -1,52 +1,169 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>funções e arrays - semana 2</title>
+    <meta charset="UTF-8"><!-- Define a codificação do documento -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!-- Responsividade -->
+    <title>Funções e Arrays - Semana 2</title>
 </head>
 <body>
 
     <h1>Funções e Arrays - Semana 2</h1>
     <p>Este é um exemplo de página HTML para a semana 2 do curso.</p>
-    
-    <div id="resultado"></div> <!-- Elemento para exibir os resultados -->
+
+    <!-- Área para exibir os resultados do Dia 1 -->
+    <div id="resultado"></div>
+
+    <hr>
+
+    <h2>Dia 2 – Funções com validação</h2>
+    <!-- Área para exibir os resultados do Dia 2 (precisa estar no HTML, não dentro do <script>) -->
+    <div id="resultadoDia2"></div>
 
     <script>
+        // =========================
         // Dia 1 - Funções básicas
-        // Exemplo de função que retorna uma saudação
+        // =========================
+
+        // Declara uma função chamada 'saudar' que recebe um parâmetro 'nome'
         function saudar(nome) {
+            // Retorna uma string concatenando "Olá, " + nome + "!"
             return "Olá, " + nome + "!";
         }
+
+        // Chama a função 'saudar' e guarda o retorno na variável 'mensagem'
         let mensagem = saudar("Jhonnatan");
-        document.write(mensagem);
+
+        // Em vez de document.write (que não atualiza depois), usamos innerHTML para escrever na página
+        document.getElementById("resultado").innerHTML += mensagem;
+
+        // Mostra a mesma mensagem no console (ferramenta do navegador para desenvolvedores)
         console.log(mensagem);
 
-        // Exemplo de função que calcula o dobro de um número
+        // Declara uma função que retorna o dobro de um número
         function dobro(numero) {
+            // Operação aritmética: multiplicação
             return numero * 2;
         }
 
-        // Função para atualizar o resultado do dobro
+        // Função "controladora" que calcula o dobro e escreve o resultado na página
         function atualizarDobro(numero) {
+            // Chama 'dobro' e guarda o resultado
             let resultado = dobro(numero);
+            // Atualiza a área #resultado anexando uma nova linha com o texto
             document.getElementById("resultado").innerHTML += "<br>O dobro de " + numero + " é: " + resultado;
         }
 
-        atualizarDobro(10); // Chama a função com o valor inicial
+        // Executa a atualização do dobro com o valor 10 (exemplo)
+        atualizarDobro(10);
 
-        // Função para somar dois números
+        // Função que soma dois números
         function soma(a, b) {
             return a + b;
         }
 
-        // Função para atualizar o resultado da soma
+        // Função "controladora" para exibir a soma na página
         function atualizarSoma(a, b) {
             let total = soma(a, b);
             document.getElementById("resultado").innerHTML += "<br>A soma de " + a + " e " + b + " é: " + total;
         }
 
-        atualizarSoma(5, 7); // Chama a função para somar 5 e 7
+        // Executa a soma de exemplo
+        atualizarSoma(5, 7);
+
+        // ===================================
+        // Dia 2 – Funções com validação (if/else)
+        // ===================================
+
+        // ehPar(n): retorna true se 'n' for um número par, senão false
+        function ehPar(n) {
+            // Validação de tipo e NaN: se não for número, considere não-par (false)
+            if (typeof n !== "number" || Number.isNaN(n)) {
+                return false;
+            }
+            // Operador % (módulo) retorna o resto da divisão por 2
+            // Se o resto for 0, é par
+            if (n % 2 === 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        // divisivelPor(a, b): true se 'a' for divisível por 'b'
+        function divisivelPor(a, b) {
+            // Validação básica: ambos precisam ser números válidos
+            if (typeof a !== "number" || typeof b !== "number" || Number.isNaN(a) || Number.isNaN(b)) {
+                return false;
+            }
+            // Evita divisão por zero (b = 0 não é permitido)
+            if (b === 0) {
+                return false;
+            }
+            // Se o resto da divisão de 'a' por 'b' for 0, é divisível
+            if (a % b === 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        // notaValida(n): true se a nota estiver entre 0 e 10 (inclusive)
+        function notaValida(n) {
+            // Confere se 'n' é número e não é NaN
+            if (typeof n !== "number" || Number.isNaN(n)) {
+                return false;
+            }
+            // Usa comparações encadeadas para checar o intervalo
+            if (n >= 0 && n <= 10) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        // ===== Funções "controladoras" para imprimir os resultados do Dia 2 =====
+
+        // Exibe se o número é par ou ímpar
+        function atualizarParidade(n) {
+            const alvo = document.getElementById("resultadoDia2");
+            const ehNumeroPar = ehPar(n); // true/false
+            const texto = ehNumeroPar ? "par" : "ímpar"; // Operador ternário
+            alvo.innerHTML += "<br>O número " + n + " é " + texto + ".";
+        }
+
+        // Exibe se 'a' é divisível por 'b' (com mensagem especial para b = 0)
+        function atualizarDivisibilidade(a, b) {
+            const alvo = document.getElementById("resultadoDia2");
+            if (b === 0) {
+                alvo.innerHTML += "<br>Não é possível verificar divisibilidade por 0 (b = 0).";
+                return; // Interrompe a função aqui
+            }
+            const ok = divisivelPor(a, b);
+            const msg = ok ? (a + " é divisível por " + b) : (a + " NÃO é divisível por " + b);
+            alvo.innerHTML += "<br>" + msg + ".";
+        }
+
+        // Exibe se a nota é válida (0 a 10)
+        function atualizarNota(n) {
+            const alvo = document.getElementById("resultadoDia2");
+            const ok = notaValida(n);
+            const msg = ok ? ("A nota " + n + " é válida (0 a 10).")
+                           : ("A nota " + n + " é inválida. Use valores entre 0 e 10.");
+            alvo.innerHTML += "<br>" + msg;
+        }
+
+        // ===== Chamadas de exemplo (você pode mudar os valores para testar) =====
+        atualizarParidade(4);
+        atualizarParidade(7);
+        atualizarParidade(15);
+
+        atualizarDivisibilidade(10, 2);
+        atualizarDivisibilidade(10, 3);
+        atualizarDivisibilidade(10, 0); // caso inválido
+
+        atualizarNota(7.5);
+        atualizarNota(-1);
+        atualizarNota(11);
     </script>
 </body>
 </html>

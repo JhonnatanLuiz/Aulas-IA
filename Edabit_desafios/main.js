@@ -46,4 +46,40 @@ console.log(findPerimeter(2, 9));
     console.log(remainder(-9, 45));
     console.log(remainder(5, 5));
 
+    function addition(num) {
+        return num + 1;
+    }
+    console.log(addition(0));
+    console.log(addition(9));
+    console.log(addition(-3));
+
+    function points(twoPointers, threePointers) {
+        return (twoPointers * 2) + (threePointers * 3);
+    }
+    console.log(points(1, 1));
+    console.log(points(7, 5));
+    console.log(points(38, 8));
+
+    function circuitPower(voltage, current) {
+        return voltage * current;
+    }
+    console.log(circuitPower(230, 10));
+    console.log(circuitPower(110, 3));
+    console.log(circuitPower(480, 20));
+
+    function nameString(name) {
+        var b = "Edabit";
+        var result = name + b;
+        return result;
+    }
+    console.log(nameString('Mubashir'));
+    console.log(nameString('Matt'));
+    console.log(nameString('javaScript'));
+
+    function squared(b) {
+        return b * b;
+    }
+    console.log(squared(5));
+    console.log(squared(9));
+    console.log(squared(100));
 // Fim do arquivo
