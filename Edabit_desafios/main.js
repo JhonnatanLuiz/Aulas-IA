@@ -82,4 +82,19 @@ console.log(findPerimeter(2, 9));
     console.log(squared(5));
     console.log(squared(9));
     console.log(squared(100));
-// Fim do arquivo
+
+    // Criando um loop infinito
+
+    function printArray(number) {
+        var newArray = [];
+        for (var i = 1; i <= number;) {
+            newArray.push(i);
+            i++;
+        }
+
+        return newArray;
+    }
+
+    console.log(printArray(1));
+    console.log(printArray(3));
+    console.log(printArray(6));
