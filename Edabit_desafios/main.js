@@ -98,3 +98,33 @@ console.log(findPerimeter(2, 9));
     console.log(printArray(1));
     console.log(printArray(3));
     console.log(printArray(6));
+
+    // getFirstValue
+
+    function getFirstValue(arr) {
+        return arr[0];
+    }
+    getFirstValue([1, 2, 3]);
+    getFirstValue([80, 5, 100]);
+    getFirstValue([-500, 0, 50]);
+    console.log(getFirstValue([1, 2, 3]));
+    console.log(getFirstValue([80, 5, 100]));
+    console.log(getFirstValue([-500, 0, 50]));
+
+    // Buggy Code (Part 7)
+
+    function swap(a, b) {
+        return [b, a];
+    }
+    console.log(swap(100, 200));
+    console.log(swap(44, 33));
+    console.log(swap(21, 12));
+
+    //
+
+    function animals (chickens, cows, pigs) {
+        return (chickens * 2) + (cows * 4) + (pigs * 4);
+    }
+    console.log(animals(2, 3, 5));
+    console.log(animals(1, 2, 3));
+    console.log(animals(5, 2, 8));
