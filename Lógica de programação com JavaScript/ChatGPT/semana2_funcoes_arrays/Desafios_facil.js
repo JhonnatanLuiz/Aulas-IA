@@ -132,7 +132,7 @@ const z = 50;
 
 //
 
-let idades = [25, 30, 35, 40, 50];
+let idades = [25, 30, 35, 40, 45, 50];
 
 
 function calcularIdadeMedia(idades) {
@@ -143,4 +143,4 @@ function calcularIdadeMedia(idades) {
     return soma / idades.length;
 }
 
-console.log(calcularIdadeMedia(idades)); // 36
+console.log(calcularIdadeMedia(idades)); // 37.5
