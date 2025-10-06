@@ -130,7 +130,7 @@ const z = 50;
 
 // Arrays e Funções
 
-//
+// 11. Calcule a média de idades em um array de idades.
 
 let idades = [25, 30, 35, 40, 45, 50];
 
@@ -144,3 +144,74 @@ function calcularIdadeMedia(idades) {
 }
 
 console.log(calcularIdadeMedia(idades)); // 37.5
+
+// 12. Some todos os números em um array.
+
+let somaArray = (array) => {
+    return array.reduce((acc, curr) => acc + curr, 0);
+}
+
+console.log(somaArray([1, 2, 3, 4])); // 10
+console.log(somaArray([10, 10, 10])); // 30
+
+console.log(somaArray);
+
+// 13. Conte quantos números pares existem em um array.
+
+let ContarPares = (array) => {
+    let count = 0;
+    for (let num of array) {
+        if (num % 2 === 0) {
+            count++;
+        }
+    }
+    return count;
+}
+
+console.log(ContarPares([1, 2, 3, 4, 5, 6])); // 3
+console.log(ContarPares([10, 11, 12])); // 2
+
+// 14. Sem usar a função Math.max(), encontre o maior número em um array.
+
+let maiorNumero = (array) => {
+    let max = array[0];
+    for (let i = 1; i < array.length; i++) {
+        if (array[i] > max) {
+            max = array[i];
+        }
+    }
+    return max;
+}
+
+console.log(maiorNumero([1, 2, 3, 4, 5])); // 5
+console.log(maiorNumero([-1, -2, -3, -4])); // -1
+console.log(maiorNumero([10, 20, 5, 30])); // 30
+
+// 15. Conte quantas vezes uma letra aparece em uma string.
+
+let contarLetra = (str, letra) => {
+    let count = 0;
+    for (let i = 0; i < str.length; i++) {
+        if (str[i] === letra) {
+            count++;
+        }
+    }
+    return count;
+}
+
+console.log(contarLetra("banana", "a")); // 3
+console.log(contarLetra("morango", "o")); // 2
+
+// 16. Crie uma função que retorne true se todos os elementos em um array forem iguais.
+
+let todosIguais = (array) => {
+    for (let i = 1; i < array.length; i++) {
+        if (array[i]!== array[0]) {
+            return false;
+        }
+    }
+    return true;
+}
+
+console.log(todosIguais([1, 1, 1])); // true
+console.log(todosIguais([1, 2, 1])); // false
