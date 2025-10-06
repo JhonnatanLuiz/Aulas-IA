@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplos de Manipulação do DOM</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        section {
+            margin-bottom: 40px;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        h2 {
+            color: #3498db;
+            margin-top: 0;
+        }
+
+        .exemplo {
+            border-left: 4px solid #2ecc71;
+            padding-left: 15px;
+            margin: 15px 0;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        .resultado {
+            background-color: #eee;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+
+        input, select {
+            padding: 8px;
+            margin: 5px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        .highlight {
+            background-color: yellow;
+            padding: 2px 5px;
+        }
+
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+
+        .success {
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Exemplos de Manipulação do DOM</h1>
+
+    <!-- EXEMPLO 1: SELEÇÃO DE ELEMENTOS -->
+    <section id="secao-selecao">
+        <h2>1. Seleção de Elementos no DOM</h2>
+        <div class="exemplo">
+            <p>Parágrafo com <span class="highlight">destaque</span></p>
+            <p class="texto-especial">Este é um texto especial</p>
+            <p>Outro parágrafo comum</p>
+            <div class="resultado" id="resultado-selecao"></div>
+            <button onclick="selecionarElementos()">Executar Seleções</button>
+        </div>
+    </section>
+
+    <!-- EXEMPLO 2: MANIPULAÇÃO DE CONTEÚDO -->
+    <section id="secao-conteudo">
+        <h2>2. Manipulação de Conteúdo</h2>
+        <div class="exemplo">
+            <div id="conteudo-original">Este é o conteúdo original</div>
+            <div class="resultado" id="resultado-conteudo"></div>
+            <button onclick="manipularConteudo()">Modificar Conteúdo</button>
+            <button onclick="resetarConteudo()">Resetar</button>
+        </div>
+    </section>
+
+    <!-- EXEMPLO 3: CRIAÇÃO DINÂMICA DE ELEMENTOS -->
+    <section id="secao-criacao">
+        <h2>3. Criação Dinâmica de Elementos</h2>
+        <div class="exemplo">
+            <input type="text" id="texto-item" placeholder="Digite um item">
+            <button onclick="adicionarItem()">Adicionar Item</button>
+            <button onclick="limparLista()">Limpar Lista</button>
+            <ul id="lista-dinamica"></ul>
+        </div>
+    </section>
+
+    <!-- EXEMPLO 4: MANIPULAÇÃO DE ATRIBUTOS -->
+    <section id="secao-atributos">
+        <h2>4. Manipulação de Atributos</h2>
+        <div class="exemplo">
+            <img id="imagem-exemplo" src="https://via.placeholder.com/150" alt="Imagem de exemplo" width="150">
+            <div>
+                <button onclick="mudarImagem()">Mudar Imagem</button>
+                <button onclick="mudarAtributos()">Mudar Atributos</button>
+                <button onclick="resetarImagem()">Resetar</button>
+            </div>
+            <div class="resultado" id="resultado-atributos"></div>
+        </div>
+    </section>
+
+    <!-- EXEMPLO 5: EVENTOS -->
+    <section id="secao-eventos">
+        <h2>5. Trabalhando com Eventos</h2>
+        <div class="exemplo">
+            <div id="area-eventos" style="width: 200px; height: 100px; background-color: #3498db; color: white; display: flex; justify-content: center; align-items: center;">
+                Interaja comigo
+            </div>
+            <button onclick="adicionarEventos()">Adicionar Eventos</button>
+            <button onclick="removerEventos()">Remover Eventos</button>
+            <div class="resultado" id="resultado-eventos"></div>
+        </div>
+    </section>
+
+    <!-- EXEMPLO 6: CLASSES CSS -->
+    <section id="secao-classes">
+        <h2>6. Manipulação de Classes CSS</h2>
+        <div class="exemplo">
+            <div id="elemento-com-classes">Este elemento terá suas classes manipuladas</div>
+            <div>
+                <button onclick="adicionarClasse()">Adicionar Classe</button>
+                <button onclick="removerClasse()">Remover Classe</button>
+                <button onclick="alternarClasse()">Alternar Classe</button>
+                <button onclick="verificarClasse()">Verificar Classe</button>
+            </div>
+            <div class="resultado" id="resultado-classes"></div>
+        </div>
+    </section>
+
+    <!-- EXEMPLO 7: MANIPULAÇÃO DE FORMULÁRIOS -->
+    <section id="secao-formularios">
+        <h2>7. Manipulação de Formulários</h2>
+        <div class="exemplo">
+            <form id="formulario-exemplo" onsubmit="processarFormulario(event)">
+                <div>
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" name="nome">
+                </div>
+                <div>
+                    <label for="idade">Idade:</label>
+                    <input type="number" id="idade" name="idade" min="0" max="120">
+                </div>
+                <div>
+                    <label for="preferencia">Preferência:</label>
+                    <select id="preferencia" name="preferencia">
+                        <option value="">Selecione...</option>
+                        <option value="javascript">JavaScript</option>
+                        <option value="html">HTML</option>
+                        <option value="css">CSS</option>
+                    </select>
+                </div>
+                <button type="submit">Enviar</button>
+                <button type="button" onclick="limparFormulario()">Limpar</button>
+            </form>
+            <div class="resultado" id="resultado-formulario"></div>
+        </div>
+    </section>
+
+    <!-- EXEMPLO 8: NAVEGAÇÃO NO DOM (TRAVERSAL) -->
+    <section id="secao-traversal">
+        <h2>8. Navegação na Árvore do DOM</h2>
+        <div class="exemplo">
+            <div id="familia-dom">
+                <div class="pai">Elemento Pai
+                    <div class="filho">Primeiro Filho</div>
+                    <div class="filho">Segundo Filho
+                        <div class="neto">Neto</div>
+                    </div>
+                    <div class="filho">Terceiro Filho</div>
+                </div>
+            </div>
+            <button onclick="navegarDOM()">Explorar Árvore DOM</button>
+            <div class="resultado" id="resultado-traversal"></div>
+        </div>
+    </section>
+
+    <script>
+        /*
+         * EXEMPLO 1: SELEÇÃO DE ELEMENTOS NO DOM
+         * --------------------------------------
+         * O DOM (Document Object Model) fornece vários métodos para selecionar elementos HTML:
+         * - document.getElementById(): seleciona um elemento pelo ID (mais rápido)
+         * - document.querySelector(): seleciona o primeiro elemento que corresponde a um seletor CSS
+         * - document.querySelectorAll(): seleciona todos os elementos que correspondem a um seletor CSS
+         * - document.getElementsByClassName(): seleciona elementos por classe
+         * - document.getElementsByTagName(): seleciona elementos por tag HTML
+         */
+        function selecionarElementos() {
+            // Limpa o resultado anterior
+            const resultadoSelecao = document.getElementById('resultado-selecao');
+            resultadoSelecao.innerHTML = '';
+
+            // 1. Selecionando por ID (retorna um único elemento)
+            const secaoSelecao = document.getElementById('secao-selecao');
+            adicionarResultado('getElementById:', secaoSelecao.tagName, resultadoSelecao);
+
+            // 2. Selecionando pelo seletor CSS (retorna o primeiro elemento que corresponde)
+            const elementoHighlight = document.querySelector('.highlight');
+            adicionarResultado('querySelector(.highlight):', elementoHighlight.textContent, resultadoSelecao);
+
+            // 3. Selecionando todos os elementos que correspondem ao seletor (retorna NodeList)
+            const paragrafos = document.querySelectorAll('p');
+            adicionarResultado('querySelectorAll(p):', `${paragrafos.length} parágrafos encontrados`, resultadoSelecao);
+
+            // 4. Selecionando elementos por nome de classe (retorna HTMLCollection - "ao vivo")
+            const elementosEspeciais = document.getElementsByClassName('texto-especial');
+            adicionarResultado('getElementsByClassName:', elementosEspeciais[0].textContent, resultadoSelecao);
+
+            // 5. Selecionando elementos por tag (retorna HTMLCollection - "ao vivo")
+            const todosBotoes = document.getElementsByTagName('button');
+            adicionarResultado('getElementsByTagName:', `${todosBotoes.length} botões encontrados`, resultadoSelecao);
+        }
+
+        /*
+         * EXEMPLO 2: MANIPULAÇÃO DE CONTEÚDO
+         * ---------------------------------
+         * Existem várias formas de alterar o conteúdo de um elemento:
+         * - element.textContent: define ou retorna o conteúdo de texto do elemento (sem formatação HTML)
+         * - element.innerHTML: define ou retorna o conteúdo HTML interno do elemento (com formatação)
+         * - element.innerText: define ou retorna o texto visível do elemento (respeitando estilos)
+         * - element.outerHTML: define ou retorna o HTML do elemento e seu conteúdo
+         */
+        function manipularConteudo() {
+            const conteudoOriginal = document.getElementById('conteudo-original');
+            const resultadoConteudo = document.getElementById('resultado-conteudo');
+            resultadoConteudo.innerHTML = '';
+
+            // 1. Usando textContent (apenas texto, ignora tags HTML)
+            const textoOriginal = conteudoOriginal.textContent;
+            adicionarResultado('textContent (original):', textoOriginal, resultadoConteudo);
+            conteudoOriginal.textContent = 'Este texto foi modificado com textContent. <b>Tags HTML</b> não são interpretadas.';
+            
+            // 2. Usando innerHTML (interpreta HTML)
+            setTimeout(() => {
+                adicionarResultado('innerHTML (modificando):', 'Modificando com innerHTML...', resultadoConteudo);
+                conteudoOriginal.innerHTML = 'Este texto foi modificado com innerHTML. <b>Tags HTML</b> são interpretadas.';
+                
+                // 3. Usando innerText (apenas texto visível, respeita CSS)
+                setTimeout(() => {
+                    const estiloAnterior = conteudoOriginal.style.display;
+                    conteudoOriginal.style.display = 'none'; // Esconde o elemento
+                    const textoInvisivel = conteudoOriginal.innerText; // Será vazio pois o elemento está oculto
+                    conteudoOriginal.style.display = estiloAnterior; // Restaura visibilidade
+                    adicionarResultado('innerText (quando oculto):', textoInvisivel || '(string vazia pois elemento estava oculto)', resultadoConteudo);
+                    
+                    // 4. Usando outerHTML (inclui o próprio elemento)
+                    setTimeout(() => {
+                        adicionarResultado('outerHTML (antes):', conteudoOriginal.outerHTML.replace(/</g, '&lt;').replace(/>/g, '&gt;'), resultadoConteudo);
+                        // Não vamos executar esta linha de fato pois substituiria o elemento inteiro:
+                        // conteudoOriginal.outerHTML = '<p id="conteudo-original" class="destacado">Elemento completamente substituído</p>';
+                    }, 500);
+                }, 500);
+            }, 500);
+        }
+
+        function resetarConteudo() {
+            document.getElementById('conteudo-original').innerHTML = 'Este é o conteúdo original';
+            document.getElementById('resultado-conteudo').innerHTML = '';
+        }
+
+        /*
+         * EXEMPLO 3: CRIAÇÃO DINÂMICA DE ELEMENTOS
+         * ---------------------------------------
+         * Podemos criar e adicionar elementos ao DOM dinamicamente:
+         * - document.createElement(): cria um novo elemento HTML
+         * - document.createTextNode(): cria um novo nó de texto
+         * - parentNode.appendChild(): adiciona um filho ao final do nó pai
+         * - parentNode.insertBefore(): insere um nó antes de outro nó
+         * - parentNode.removeChild(): remove um filho do nó pai
+         * - element.remove(): remove o próprio elemento
+         */
+        function adicionarItem() {
+            // 1. Obter o valor do input
+            const textoItem = document.getElementById('texto-item').value.trim();
+            if (!textoItem) return; // Não adicionar itens vazios
+
+            // 2. Criar um novo elemento <li>
+            const novoItem = document.createElement('li');
+            
+            // 3. Criar um nó de texto com o valor do input
+            const textoNovoItem = document.createTextNode(textoItem);
+            
+            // 4. Adicionar o nó de texto ao elemento <li>
+            novoItem.appendChild(textoNovoItem);
+            
+            // 5. Criar botão de remover
+            const botaoRemover = document.createElement('button');
+            botaoRemover.textContent = 'Remover';
+            botaoRemover.onclick = function() {
+                // 6. Quando clicado, remove o item da lista
+                this.parentNode.remove();
+            };
+            
+            // 7. Adicionar o botão de remover ao <li>
+            novoItem.appendChild(botaoRemover);
+            
+            // 8. Adicionar o novo <li> à lista <ul>
+            document.getElementById('lista-dinamica').appendChild(novoItem);
+            
+            // 9. Limpar o input
+            document.getElementById('texto-item').value = '';
+        }
+
+        function limparLista() {
+            // Método mais direto: limpar o innerHTML da lista
+            document.getElementById('lista-dinamica').innerHTML = '';
+            
+            /*
+             * Alternativa: remover cada item um por um
+             * const lista = document.getElementById('lista-dinamica');
+             * while (lista.firstChild) {
+             *    lista.removeChild(lista.firstChild);
+             * }
+             */
+        }
+
+        /*
+         * EXEMPLO 4: MANIPULAÇÃO DE ATRIBUTOS
+         * ----------------------------------
+         * Podemos manipular atributos dos elementos HTML:
+         * - element.getAttribute(): obtém o valor de um atributo
+         * - element.setAttribute(): define o valor de um atributo
+         * - element.removeAttribute(): remove um atributo
+         * - element.hasAttribute(): verifica se um atributo existe
+         * - propriedades diretas como src, href, id, etc.
+         */
+        function mudarImagem() {
+            const imagem = document.getElementById('imagem-exemplo');
+            const resultadoAtributos = document.getElementById('resultado-atributos');
+            resultadoAtributos.innerHTML = '';
+            
+            // 1. Acessar e modificar atributos diretamente como propriedades
+            const srcAnterior = imagem.src; // Acesso direto à propriedade
+            adicionarResultado('Propriedade src (antes):', srcAnterior, resultadoAtributos);
+            
+            // 2. Modificar propriedade diretamente
+            imagem.src = 'https://via.placeholder.com/150/ff0000'; // Imagem vermelha
+            adicionarResultado('Propriedade src (depois):', imagem.src, resultadoAtributos);
+        }
+        
+        function mudarAtributos() {
+            const imagem = document.getElementById('imagem-exemplo');
+            const resultadoAtributos = document.getElementById('resultado-atributos');
+            resultadoAtributos.innerHTML = '';
+            
+            // 1. Obter um atributo com getAttribute()
+            const altAtual = imagem.getAttribute('alt');
+            adicionarResultado('getAttribute("alt"):', altAtual, resultadoAtributos);
+            
+            // 2. Definir um atributo com setAttribute()
+            imagem.setAttribute('alt', 'Nova descrição da imagem');
+            imagem.setAttribute('data-timestamp', Date.now());
+            adicionarResultado('setAttribute():', 'Alt e data-timestamp modificados', resultadoAtributos);
+            
+            // 3. Verificar se um atributo existe
+            const temDataId = imagem.hasAttribute('data-id');
+            adicionarResultado('hasAttribute("data-id"):', temDataId ? 'Sim' : 'Não', resultadoAtributos);
+            
+            // 4. Adicionar atributo novo
+            imagem.setAttribute('data-id', '123');
+            adicionarResultado('Novo atributo:', 'data-id="123" adicionado', resultadoAtributos);
+            
+            // 5. Remover um atributo
+            imagem.removeAttribute('width');
+            adicionarResultado('removeAttribute():', 'Atributo width removido', resultadoAtributos);
+        }
+        
+        function resetarImagem() {
+            const imagem = document.getElementById('imagem-exemplo');
+            imagem.src = 'https://via.placeholder.com/150';
+            imagem.alt = 'Imagem de exemplo';
+            imagem.setAttribute('width', '150');
+            
+            // Remover atributos personalizados
+            if (imagem.hasAttribute('data-timestamp')) {
+                imagem.removeAttribute('data-timestamp');
+            }
+            if (imagem.hasAttribute('data-id')) {
+                imagem.removeAttribute('data-id');
+            }
+            
+            document.getElementById('resultado-atributos').innerHTML = '';
+        }
+
+        /*
+         * EXEMPLO 5: TRABALHANDO COM EVENTOS
+         * ---------------------------------
+         * Eventos permitem que o JavaScript responda a ações do usuário:
+         * - element.addEventListener(): adiciona um ouvinte de evento
+         * - element.removeEventListener(): remove um ouvinte de evento
+         * - Atributos on... (onclick, onmouseover, etc.)
+         * - event.preventDefault(): impede o comportamento padrão
+         * - event.stopPropagation(): impede a propagação do evento
+         */
+        let contadorCliques = 0;
+        const registroEventos = []; // Para rastrear funções de callback
+
+        function adicionarEventos() {
+            const areaEventos = document.getElementById('area-eventos');
+            const resultadoEventos = document.getElementById('resultado-eventos');
+            resultadoEventos.innerHTML = '';
+            
+            // 1. Evento de clique (método addEventListener)
+            const handleClick = function(event) {
+                contadorCliques++;
+                resultadoEventos.innerHTML += `<div>Clique #${contadorCliques} detectado em (${event.clientX}, ${event.clientY})</div>`;
+                
+                // Mudar cor aleatória ao clicar
+                const cor = '#' + Math.floor(Math.random()*16777215).toString(16);
+                areaEventos.style.backgroundColor = cor;
+            };
+            areaEventos.addEventListener('click', handleClick);
+            registroEventos.push({ elemento: areaEventos, tipo: 'click', callback: handleClick });
+            
+            // 2. Evento de movimento do mouse
+            const handleMouseMove = function(event) {
+                // Limitamos as atualizações para não sobrecarregar
+                if (contadorCliques > 0 && contadorCliques % 2 === 0) {
+                    areaEventos.textContent = `Mouse em (${event.offsetX}, ${event.offsetY})`;
+                }
+            };
+            areaEventos.addEventListener('mousemove', handleMouseMove);
+            registroEventos.push({ elemento: areaEventos, tipo: 'mousemove', callback: handleMouseMove });
+            
+            // 3. Evento de saída do mouse
+            const handleMouseOut = function() {
+                areaEventos.textContent = 'Mouse saiu';
+            };
+            areaEventos.addEventListener('mouseout', handleMouseOut);
+            registroEventos.push({ elemento: areaEventos, tipo: 'mouseout', callback: handleMouseOut });
+            
+            adicionarResultado('Eventos adicionados:', 'click, mousemove, mouseout', resultadoEventos);
+        }
+
+        function removerEventos() {
+            const areaEventos = document.getElementById('area-eventos');
+            const resultadoEventos = document.getElementById('resultado-eventos');
+            
+            // Remover todos os eventos registrados
+            registroEventos.forEach(registro => {
+                registro.elemento.removeEventListener(registro.tipo, registro.callback);
+            });
+            
+            // Limpar registro
+            registroEventos.length = 0;
+            contadorCliques = 0;
+            
+            // Resetar aparência
+            areaEventos.style.backgroundColor = '#3498db';
+            areaEventos.textContent = 'Interaja comigo';
+            
+            resultadoEventos.innerHTML = '<div>Todos os eventos foram removidos</div>';
+        }
+
+        /*
+         * EXEMPLO 6: MANIPULAÇÃO DE CLASSES CSS
+         * ------------------------------------
+         * A propriedade classList fornece métodos para trabalhar com classes CSS:
+         * - element.classList.add(): adiciona uma classe
+         * - element.classList.remove(): remove uma classe
+         * - element.classList.toggle(): adiciona uma classe se ela não existir, remove se existir
+         * - element.classList.contains(): verifica se uma classe existe
+         * - element.classList.replace(): substitui uma classe por outra
+         */
+        function adicionarClasse() {
+            const elemento = document.getElementById('elemento-com-classes');
+            const resultado = document.getElementById('resultado-classes');
+            
+            // Adicionar classes
+            elemento.classList.add('highlight');
+            resultado.innerHTML = `<div>Classe 'highlight' adicionada</div>`;
+            resultado.innerHTML += `<div>Classes atuais: ${elemento.className}</div>`;
+        }
+
+        function removerClasse() {
+            const elemento = document.getElementById('elemento-com-classes');
+            const resultado = document.getElementById('resultado-classes');
+            
+            // Remover classe (se existir)
+            if (elemento.classList.contains('highlight')) {
+                elemento.classList.remove('highlight');
+                resultado.innerHTML = `<div>Classe 'highlight' removida</div>`;
+            } else {
+                resultado.innerHTML = `<div>Classe 'highlight' não existe para remover</div>`;
+            }
+            
+            resultado.innerHTML += `<div>Classes atuais: ${elemento.className}</div>`;
+        }
+
+        function alternarClasse() {
+            const elemento = document.getElementById('elemento-com-classes');
+            const resultado = document.getElementById('resultado-classes');
+            
+            // Toggle de uma classe
+            const tinha = elemento.classList.contains('error');
+            elemento.classList.toggle('error');
+            const tem = elemento.classList.contains('error');
+            
+            resultado.innerHTML = `<div>Classe 'error' ${tinha ? 'removida' : 'adicionada'}</div>`;
+            resultado.innerHTML += `<div>Classes atuais: ${elemento.className}</div>`;
+        }
+
+        function verificarClasse() {
+            const elemento = document.getElementById('elemento-com-classes');
+            const resultado = document.getElementById('resultado-classes');
+            
+            // Verificar classes
+            resultado.innerHTML = `<div>Tem classe 'highlight'? ${elemento.classList.contains('highlight') ? 'Sim' : 'Não'}</div>`;
+            resultado.innerHTML += `<div>Tem classe 'error'? ${elemento.classList.contains('error') ? 'Sim' : 'Não'}</div>`;
+            resultado.innerHTML += `<div>Tem classe 'success'? ${elemento.classList.contains('success') ? 'Sim' : 'Não'}</div>`;
+            resultado.innerHTML += `<div>Classes atuais: ${elemento.className}</div>`;
+        }
+
+        /*
+         * EXEMPLO 7: MANIPULAÇÃO DE FORMULÁRIOS
+         * -----------------------------------
+         * JavaScript pode interagir com formulários HTML:
+         * - form.elements: acessa todos os elementos do formulário
+         * - input.value: obtém ou define o valor de um campo
+         * - input.checked: obtém ou define o estado de checkbox/radio
+         * - select.selectedIndex: obtém ou define o índice selecionado
+         * - form.submit(): envia o formulário programaticamente
+         * - form.reset(): limpa todos os campos do formulário
+         */
+        function processarFormulario(event) {
+            // Impedir o envio padrão do formulário
+            event.preventDefault();
+            
+            const form = document.getElementById('formulario-exemplo');
+            const resultado = document.getElementById('resultado-formulario');
+            resultado.innerHTML = '';
+            
+            // 1. Acessar valores por referência direta aos elementos
+            const nome = document.getElementById('nome').value;
+            const idade = document.getElementById('idade').value;
+            
+            // 2. Acessar valores através da coleção form.elements
+            const preferencia = form.elements['preferencia'].value;
+            
+            // 3. Validação simples
+            const erros = [];
+            if (!nome) erros.push('Nome é obrigatório');
+            if (!idade) erros.push('Idade é obrigatória');
+            if (!preferencia) erros.push('Preferência é obrigatória');
+            
+            // 4. Exibir erros ou processamento bem-sucedido
+            if (erros.length > 0) {
+                resultado.innerHTML = '<div class="error">Formulário com erros:</div>';
+                erros.forEach(erro => {
+                    resultado.innerHTML += `<div>- ${erro}</div>`;
+                });
+            } else {
+                resultado.innerHTML = '<div class="success">Formulário processado com sucesso!</div>';
+                resultado.innerHTML += `<div>Nome: ${nome}</div>`;
+                resultado.innerHTML += `<div>Idade: ${idade}</div>`;
+                resultado.innerHTML += `<div>Preferência: ${preferencia}</div>`;
+            }
+        }
+
+        function limparFormulario() {
+            // Duas formas de limpar o formulário:
+            
+            // 1. Usando reset() (método nativo do formulário)
+            document.getElementById('formulario-exemplo').reset();
+            
+            /*
+             * 2. Limpar cada campo individualmente
+             * document.getElementById('nome').value = '';
+             * document.getElementById('idade').value = '';
+             * document.getElementById('preferencia').selectedIndex = 0;
+             */
+            
+            document.getElementById('resultado-formulario').innerHTML = '';
+        }
+
+        /*
+         * EXEMPLO 8: NAVEGAÇÃO NA ÁRVORE DO DOM (TRAVERSAL)
+         * -----------------------------------------------
+         * Podemos navegar entre os nós do DOM usando relações parentesco:
+         * - parentNode: nó pai
+         * - childNodes: todos os nós filhos (incluindo espaços em branco)
+         * - children: elementos filhos (apenas elementos HTML)
+         * - firstChild, lastChild: primeiro e último nó filho
+         * - firstElementChild, lastElementChild: primeiro e último elemento filho
+         * - nextSibling, previousSibling: irmão seguinte e anterior (incluindo espaços)
+         * - nextElementSibling, previousElementSibling: elemento irmão seguinte e anterior
+         */
+        function navegarDOM() {
+            const familiaDOM = document.getElementById('familia-dom');
+            const resultado = document.getElementById('resultado-traversal');
+            resultado.innerHTML = '';
+            
+            // 1. Encontrar o elemento pai
+            const pai = familiaDOM.querySelector('.pai');
+            adicionarResultado('Elemento pai:', pai.textContent.split('\n')[0].trim(), resultado);
+            
+            // 2. Contar filhos (elementos HTML)
+            const filhos = pai.children;
+            adicionarResultado('Número de filhos:', filhos.length, resultado);
+            
+            // 3. Acessar o primeiro e o último filho
+            const primeiroFilho = pai.firstElementChild;
+            const ultimoFilho = pai.lastElementChild;
+            adicionarResultado('Primeiro filho:', primeiroFilho.textContent, resultado);
+            adicionarResultado('Último filho:', ultimoFilho.textContent, resultado);
+            
+            // 4. Navegar entre irmãos
+            const segundoFilho = primeiroFilho.nextElementSibling;
+            adicionarResultado('Segundo filho (irmão do primeiro):', segundoFilho.textContent.split('\n')[0].trim(), resultado);
+            
+            // 5. Acessar o neto (filho do segundo filho)
+            const neto = segundoFilho.children[0];
+            adicionarResultado('Neto:', neto.textContent, resultado);
+            
+            // 6. Navegar para cima (parent)
+            const paiDoNeto = neto.parentElement;
+            adicionarResultado('Pai do neto:', paiDoNeto.textContent.split('\n')[0].trim(), resultado);
+            
+            // 7. Verificar o tipo de nó
+            adicionarResultado('Tipo de nó do neto:', neto.nodeType === 1 ? 'Elemento' : 'Outro', resultado);
+            
+            // 8. Navegar entre todos os nós (incluindo espaços em branco)
+            const todosNos = pai.childNodes.length;
+            adicionarResultado('Total de nós (incluindo espaços):', todosNos, resultado);
+        }
+
+        // Função utilitária para exibir resultados
+        function adicionarResultado(titulo, valor, elemento) {
+            elemento.innerHTML += `<div><strong>${titulo}</strong> ${valor}</div>`;
+        }
+
+    </script>
+</body>
+</html>
