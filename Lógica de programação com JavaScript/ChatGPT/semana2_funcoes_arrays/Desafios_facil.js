@@ -215,3 +215,104 @@ let todosIguais = (array) => {
 
 console.log(todosIguais([1, 1, 1])); // true
 console.log(todosIguais([1, 2, 1])); // false
+
+// 17. Some todos os números positivos em um array.
+
+let somaPositivos = (array) => {
+    return array
+        .filter(n => n > 0)
+        .reduce((acc, n) => acc + n, 0);
+}
+
+console.log(somaPositivos([1, -2, 3, 4, -5])); // 8
+console.log(somaPositivos([-1, -2, -3])); // 0
+console.log(somaPositivos([10, 5, 0])); // 15
+
+// 18. Calcule a média de um array.
+
+let mediaArray = (array) => {
+    if (array.length === 0) return 0;
+    let soma = 0;
+    for (let num of array) {
+        soma += num;
+    }
+    return soma / array.length;
+}
+
+console.log(mediaArray([10, 20, 30])); // 20
+console.log(mediaArray([5, 5, 5, 5])); // 5
+console.log(mediaArray([2, 4, 6, 8])); // 5
+
+// 19. Reverter um número.
+
+let reverterNumero = (num) => {
+    if (num === 0) return 0;
+    const sinal = Math.sign(num);
+    let n = Math.abs(Math.trunc(num));
+    let rev = 0;
+    while (n > 0) {
+        rev = rev * 10 + (n % 10);
+        n = Math.floor(n / 10);
+    }
+    return rev * sinal;
+}
+
+console.log(reverterNumero(12345)); // 54321
+console.log(reverterNumero(-6789)); // -9876
+console.log(reverterNumero(1000)); // 1
+
+// 20. Remova todos os números negativos de um array.
+
+let removerNegativos = (array) => {
+    let novoArray = [];
+    for (let i = 0; i < array.length; i++) {
+        if (array[i] < 0) {
+            novoArray.push(0);
+        } else {
+            novoArray.push(array[i]);
+        }
+    }
+    return novoArray;
+}
+console.log(removerNegativos([1, -2, 3, -4])); // [1, 0, 3, 0]
+console.log(removerNegativos([-1, -2, -3])); // [0, 0, 0]
+
+// 21. Conte o número de vogais em uma string.
+
+let contarVogais = (str) => {
+    const vogais = 'aeiou';
+    let count = 0;
+    const chars = str.toLowerCase().split('');
+    for (let char of chars) {
+        if (vogais.includes(char)) {
+            count++;
+        }
+    }
+    return count;
+}
+
+console.log(contarVogais("Hello World")); // 3
+console.log(contarVogais("JavaScript")); // 3
+console.log(contarVogais("rhythm")); // 0
+
+// 22. Encontre o segundo maior número em um array.
+
+let segundoMaior = (array) => {
+    if (array.length < 2) return undefined;
+    let max = -Infinity;
+    let segundoMax = -Infinity;
+    for (let num of array) {
+        if (num > max) {
+            segundoMax = max;
+            max = num;
+        } else if (num > segundoMax && num < max) {
+            segundoMax = num;
+        }
+    }
+    if (segundoMax === -Infinity) segundoMax = max;
+    return segundoMax;
+}
+
+console.log(segundoMaior([1, 2, 3, 4, 5])); // 4
+console.log(segundoMaior([5, 5, 5])); // 5
+console.log(segundoMaior([10, 20, 5, 30])); // 20
