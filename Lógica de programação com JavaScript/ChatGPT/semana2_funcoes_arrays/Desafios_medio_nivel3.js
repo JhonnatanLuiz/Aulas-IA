@@ -69,3 +69,24 @@ console.log(nomeDoDia(1)); // "Domingo"
 console.log(nomeDoDia(5)); // "Quinta"
 console.log(nomeDoDia(8)); // "Número inválido"
 
+// 7. Inverter chaves e valores de um objeto
+
+function inverterObjeto(obj) {
+    if (obj == null || typeof obj !== 'object' || Array.isArray(obj)) return {};
+    return Object.fromEntries(
+        Object.entries(obj).map(([key, value]) => [String(value), key])
+    );
+}
+
+console.log(inverterObjeto({ a: 1, b: 2, c: 3 })); // { '1': 'a', '2': 'b', '3': 'c' }
+console.log(inverterObjeto({ nome: "Alice", idade: 30 })); // { 'Alice': 'nome', '30': 'idade' }
+
+// 8. 
+
+function numerosUnicos(arr) {
+    if (!Array.isArray(arr)) return [];
+    return [...new Set(arr)];
+}
+
+console.log(numerosUnicos([1, 2, 2, 3, 4, 4, 5])); // [1, 2, 3, 4, 5]
+console.log(numerosUnicos(['a', 'b', 'b', 'c'])); // ['a', 'b', 'c']    
