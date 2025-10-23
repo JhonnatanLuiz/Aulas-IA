@@ -79,7 +79,7 @@ Navegue até a pasta do projeto e execute:
 
 ```powershell
 cd "c:\Users\Johnnie Desktop\OneDrive\Documents\GitHub\Aulas IA\Lua\Projeto_1"
-lua main.lua
+lua54 main.lua
 ```
 
 ---
@@ -87,7 +87,7 @@ lua main.lua
 ## 🎯 COMEÇANDO A APRENDER
 
 ### Menu Principal
-Quando executar `lua main.lua`, você verá:
+Quando executar `lua54 main.lua`, você verá:
 
 ```
 ╔═══════════════════════════════════════════════════════════╗
