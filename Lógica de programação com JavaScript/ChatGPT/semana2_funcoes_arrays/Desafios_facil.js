@@ -316,3 +316,29 @@ let segundoMaior = (array) => {
 console.log(segundoMaior([1, 2, 3, 4, 5])); // 4
 console.log(segundoMaior([5, 5, 5])); // 5
 console.log(segundoMaior([10, 20, 5, 30])); // 20
+
+// 23. Crie uma function que retorne a saudação "Olá, mundo!".
+
+function saudacao() {
+    return 'Olá, mundo!';
+}
+console.log(saudacao()); // "Olá, mundo!"
+
+// 24.
+
+function saudacaoNome(nome) { 
+    return 'Olá, ' + nome + '!';
+}
+console.log(saudacaoNome('Maria')); // "Olá, Maria!"
+
+// Numero negativo ou positivo
+
+function PositivoOuNegativo(num) { 
+    if (num >= 0) {
+        return 'Positivo';
+    } else { 
+        return 'Negativo';
+    }
+}
+console.log(PositivoOuNegativo(10)); // "Positivo"
+console.log(PositivoOuNegativo(-5)); // "Negativo"
